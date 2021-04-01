@@ -16,8 +16,6 @@ interface Post {
 }
 
 export default function Post({ post }: Post) {
-  console.log('postagem', post);
-
   return (
     <>
       <Head>
@@ -43,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const session = (await getSession({ req })) as any;
 
-  if (!session.activeSubscription) {
+  if (!session?.activeSubscription) {
     return {
       redirect: {
         destination: '/',
